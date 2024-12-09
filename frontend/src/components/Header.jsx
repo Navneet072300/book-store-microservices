@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Navbar from "./Navbar";
 import { CgMenuLeft } from "react-icons/cg";
 import { RiShoppingBag4Line, RiUserLine } from "react-icons/ri";
-import { useState } from "react";
+import { FaUserCircle } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
+  const [token, setToken] = useState("");
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
 
@@ -13,12 +17,26 @@ const Header = () => {
     setMenuOpened((prev) => !prev);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.screenY > 0) {
+        if (menuOpened) setMenuOpened(false);
+      }
+      setActive(window.screenY > 30);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [menuOpened]);
+
   return (
     <header className="top-0 right-0 left-0 w-full fixed z-50">
       <div
-        className={
-          "bg-white py-2.5 max-padd-container flexBetween border-b border-slate-900/10 rounded transition-all duration-300"
-        }
+        className={`${
+          active ? "bg-white py-2.5" : "py-3"
+        } max-padd-container flexBetween border-b border-slate-900/10 rounded transition-all duration-300`}
       >
         <Link to={"/"} className="flex-1 flex items-center justify-start ">
           <img
@@ -54,13 +72,31 @@ const Header = () => {
               0
             </span>
           </Link>
-          <div>
-            <div>
-              <button className="btn-outline flexCenter gap-x-2">
-                Login
-                <RiUserLine />
-              </button>
+          <div className="relative group">
+            <div onClick={!token && navigate("/")}>
+              {token ? (
+                <div>
+                  <FaUserCircle className="text-[29px] cursor-pointer" />
+                </div>
+              ) : (
+                <button className="btn-outline flexCenter gap-x-2">
+                  Login
+                  <RiUserLine />
+                </button>
+              )}
             </div>
+            {token && (
+              <>
+                <ul className="bg-white p-1 w-32 ring-1 ring-slate-900/5 rounded absolute right-0 top-7 hidden group-hover:flex flex-col regular-14 shadow-md">
+                  <li className="p-2 text-teritary rounded-md hover:bg-primary cursor-pointer">
+                    Orders
+                  </li>
+                  <li className="p-2 text-teritary rounded-md hover:bg-primary cursor-pointer">
+                    Logout
+                  </li>
+                </ul>
+              </>
+            )}
           </div>
         </div>
       </div>

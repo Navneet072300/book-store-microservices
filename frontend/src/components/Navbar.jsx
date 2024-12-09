@@ -18,7 +18,7 @@ const Navbar = ({ containerStyles, toggleMenu, menuOpened }) => {
       icon: <FaShoppingBag />,
     },
     {
-      to: "/contact",
+      to: "mailto:info@bookhive.com",
       label: "Contact",
       icon: <IoMdContact />,
     },
