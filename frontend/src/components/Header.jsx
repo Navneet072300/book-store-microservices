@@ -1,15 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Navbar from "./Navbar";
 import { CgMenuLeft } from "react-icons/cg";
 import { RiShoppingBag4Line, RiUserLine } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ShopContext } from "../context/ShopContext";
 
 const Header = () => {
-  const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
-  const [token, setToken] = useState("");
+  const { navigate, token, setToken } = useContext(ShopContext);
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
 
@@ -35,7 +35,7 @@ const Header = () => {
     <header className="top-0 right-0 left-0 w-full fixed z-50">
       <div
         className={`${
-          active ? "bg-white py-2.5" : "py-3"
+          active ? "bg-white py-2.5" : "py-3 bg-primary"
         } max-padd-container flexBetween border-b border-slate-900/10 rounded transition-all duration-300`}
       >
         <Link to={"/"} className="flex-1 flex items-center justify-start ">
