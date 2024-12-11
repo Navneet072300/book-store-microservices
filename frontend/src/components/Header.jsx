@@ -73,7 +73,7 @@ const Header = () => {
             </span>
           </Link>
           <div className="relative group">
-            <div onClick={!token && navigate("/")}>
+            <div>
               {token ? (
                 <div>
                   <FaUserCircle className="text-[29px] cursor-pointer" />

@@ -1,5 +1,4 @@
 import Hero from "../components/Hero";
-import Footer from "../components/Footer";
 import NewArrivals from "../components/NewArrivals";
 import About from "../components/About";
 import PopularBooks from "../components/PopularBooks";
@@ -13,9 +12,7 @@ const Home = () => {
       <About />
       <PopularBooks />
       <Features />
-      <div className="max-padd-container bg-white">
-        <Footer />
-      </div>
+      <div className="max-padd-container bg-white"></div>
     </div>
   );
 };
