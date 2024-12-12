@@ -9,7 +9,7 @@ import { ShopContext } from "../context/ShopContext";
 
 const Header = () => {
   // eslint-disable-next-line no-unused-vars
-  const { navigate, token, setToken } = useContext(ShopContext);
+  const { navigate, token, setToken, getCartCount } = useContext(ShopContext);
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
 
@@ -69,7 +69,7 @@ const Header = () => {
           <Link to={"/cart"} className="  flex relative">
             <RiShoppingBag4Line className="text-[33px] bg-secondary text-primary rounded-full p-1.5" />
             <span className="bg-primary ring-1 ring-slate-900/5 medium-14 absolute left-5 -top-2.5 flexCenter w-5 h-5 rounded-full shadow-md">
-              0
+              {getCartCount()}
             </span>
           </Link>
           <div className="relative group">
@@ -79,7 +79,10 @@ const Header = () => {
                   <FaUserCircle className="text-[29px] cursor-pointer" />
                 </div>
               ) : (
-                <button className="btn-outline flexCenter gap-x-2">
+                <button
+                  onClick={() => navigate("/login")}
+                  className="btn-outline flexCenter gap-x-2"
+                >
                   Login
                   <RiUserLine />
                 </button>

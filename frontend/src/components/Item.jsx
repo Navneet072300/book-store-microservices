@@ -4,7 +4,7 @@ import { FaShoppingBag } from "react-icons/fa";
 import { ShopContext } from "../context/ShopContext";
 
 const Item = ({ book }) => {
-  const { currency } = useContext(ShopContext);
+  const { currency, addToCart } = useContext(ShopContext);
   return (
     <div>
       <div className="flexCenter bg-primary p-6 rounded-3xl overflow-hidden relative group">
@@ -17,7 +17,10 @@ const Item = ({ book }) => {
       <div className="p-3">
         <div className="flexBetween">
           <h4 className="h4 line-clamp-1 !my-0">{book.name}</h4>
-          <span className="flexCenter h-8 w-8 rounded cursor-pointer hover:bg-primary">
+          <span
+            onClick={() => addToCart(book._id)}
+            className="flexCenter h-8 w-8 rounded cursor-pointer hover:bg-primary"
+          >
             <FaShoppingBag className="text-lg" />
           </span>
         </div>
