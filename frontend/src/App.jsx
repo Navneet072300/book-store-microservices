@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import PlaceOrder from "./pages/PlaceOrder";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/place-order" element={<PlaceOrder />} />
       </Routes>
       <Footer />
     </main>
